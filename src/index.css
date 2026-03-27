@@ -1,0 +1,20 @@
+@import "tailwindcss";
+
+@theme {
+  --color-primary: #5377CC;
+  --color-primary-light: #6B8EE8;
+  --color-primary-dark: #3D5CB0;
+  --color-bg: #F8FAFC;
+  --color-text: #1E293B;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+  body {
+    background-color: #F8FAFC;
+    color: #1E293B;
+    font-family: 'Apple SD Gothic Neo', 'Noto Sans KR', sans-serif;
+  }
+}
