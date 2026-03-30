@@ -34,7 +34,7 @@ const features = [
   },
 ];
 
-const containerVariants = {
+const containerVariants : Variants = {
   hidden: {},
   visible: {
     transition: {
