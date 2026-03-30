@@ -15,7 +15,7 @@ const containerVariants : Variants = {
   },
 };
 
-const itemVariants  : Variants= {
+const itemVariants : Variants= {
   hidden: { opacity: 0, y: 30 },
   visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: [0.25, 0.46, 0.45, 0.94] } },
 };
@@ -190,7 +190,7 @@ export default function RoleSelect({ onBack, onSelectRole }: RoleSelectProps) {
           variants={itemVariants}
           className="mt-10 text-slate-300 text-[13px] text-center"
         >
-          이후에도 앱 설정에서 역할을 변경할 수 있습니다.
+          앱 설정에서도 역할을 변경할 수 있습니다.
         </motion.p>
       </motion.div>
     </motion.div>
