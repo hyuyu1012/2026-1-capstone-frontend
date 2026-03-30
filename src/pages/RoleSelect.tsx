@@ -1,13 +1,8 @@
-import { motion,  type Variants } from 'framer-motion';
+import { motion, type Variants } from 'framer-motion';
 import { ArrowLeft, Heart, Shield } from 'lucide-react';
+import { useNavigate } from 'react-router-dom';
 
-interface RoleSelectProps {
-  onBack: () => void;
-  onSelectRole: (role: 'patient' | 'guardian') => void;
-}
-
-
-const containerVariants : Variants = {
+const containerVariants: Variants = {
   hidden: { opacity: 0 },
   visible: {
     opacity: 1,
@@ -15,13 +10,20 @@ const containerVariants : Variants = {
   },
 };
 
-const itemVariants : Variants= {
+const itemVariants: Variants = {
   hidden: { opacity: 0, y: 30 },
   visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: [0.25, 0.46, 0.45, 0.94] } },
 };
 
+export default function RoleSelect() {
+  const navigate = useNavigate();
 
-export default function RoleSelect({ onBack, onSelectRole }: RoleSelectProps) {
+  const handleSelectRole = (role: 'patient' | 'guardian') => {
+    // TODO: navigate to login with role context
+    console.log('Selected role:', role);
+    navigate(`/${role}`);
+  };
+
   return (
     <motion.div
       initial={{ opacity: 0 }}
@@ -48,7 +50,7 @@ export default function RoleSelect({ onBack, onSelectRole }: RoleSelectProps) {
         initial={{ opacity: 0, x: -16 }}
         animate={{ opacity: 1, x: 0 }}
         transition={{ duration: 0.5, delay: 0.1 }}
-        onClick={onBack}
+        onClick={() => navigate(-1)}
         className="absolute top-8 left-8 flex items-center gap-2 text-slate-500 hover:text-slate-700 transition-colors text-[15px] font-medium"
         whileHover={{ x: -3 }}
         whileTap={{ scale: 0.96 }}
@@ -63,7 +65,6 @@ export default function RoleSelect({ onBack, onSelectRole }: RoleSelectProps) {
         animate="visible"
         className="relative z-10 flex flex-col items-center px-6 w-full max-w-3xl"
       >
-
         {/* Heading */}
         <motion.h1
           variants={itemVariants}
@@ -74,7 +75,7 @@ export default function RoleSelect({ onBack, onSelectRole }: RoleSelectProps) {
         </motion.h1>
 
         <motion.p
-          variants={itemVariants} 
+          variants={itemVariants}
           className="text-slate-400 text-[16px] leading-relaxed text-center mb-14 max-w-sm"
         >
           역할에 맞게 최적화된 화면과 기능을 제공해드립니다.
@@ -87,7 +88,7 @@ export default function RoleSelect({ onBack, onSelectRole }: RoleSelectProps) {
         >
           {/* 환자용 */}
           <motion.button
-            onClick={() => onSelectRole('patient')}
+            onClick={() => handleSelectRole('patient')}
             whileHover={{
               scale: 1.03,
               boxShadow: '0 20px 48px rgba(83, 119, 204, 0.22)',
@@ -138,7 +139,7 @@ export default function RoleSelect({ onBack, onSelectRole }: RoleSelectProps) {
 
           {/* 보호자용 */}
           <motion.button
-            onClick={() => onSelectRole('guardian')}
+            onClick={() => handleSelectRole('guardian')}
             whileHover={{
               scale: 1.03,
               boxShadow: '0 20px 48px rgba(83, 119, 204, 0.28)',

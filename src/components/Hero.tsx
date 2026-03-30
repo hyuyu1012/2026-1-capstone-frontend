@@ -1,12 +1,10 @@
 import { motion } from 'framer-motion'; // framer-motion 애니메이션 라이브러리 import
 import { ArrowRight } from 'lucide-react';
+import { useNavigate } from 'react-router-dom';
 import familyImg from '../assets/family.jpg';
 
-interface HeroProps {
-  onStart: () => void;
-}
-
-export default function Hero({ onStart }: HeroProps) {
+export default function Hero() {
+  const navigate = useNavigate();
   return (
     <section className="relative min-h-screen overflow-hidden bg-linear-to-br from-white via-slate-50 to-blue-100/70">
       {/* Background decorative elements */}
@@ -106,7 +104,7 @@ export default function Hero({ onStart }: HeroProps) {
             <motion.button
               whileHover={{ scale: 1.02, boxShadow: '0 16px 40px rgba(83, 119, 204, 0.32)' }}
               whileTap={{ scale: 0.98 }}
-              onClick={onStart}
+              onClick={() => navigate('/role-select')}
               className="flex items-center gap-2.5 px-8 py-[14px] rounded-xl text-white font-semibold text-[15px] transition-all"
               style={{
                 backgroundColor: '#5377CC',

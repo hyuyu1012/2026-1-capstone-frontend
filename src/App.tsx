@@ -1,34 +1,27 @@
-import { useState } from 'react';
+import { Routes, Route } from 'react-router-dom';
 import Hero from './components/Hero';
 import Features from './components/Features';
 import HowItWorks from './components/HowItWorks';
 import Footer from './components/Footer';
 import RoleSelect from './pages/RoleSelect';
 
-type Page = 'landing' | 'role-select';
-
-function App() {
-  const [page, setPage] = useState<Page>('landing');
-
-  if (page === 'role-select') {
-    return (
-      <RoleSelect
-        onBack={() => setPage('landing')}
-        onSelectRole={(role) => {
-          // TODO: navigate to login with role context
-          console.log('Selected role:', role);
-        }}
-      />
-    );
-  }
-
+function LandingPage() {
   return (
     <div className="min-h-screen">
-      <Hero onStart={() => setPage('role-select')} />
+      <Hero />
       <Features />
       <HowItWorks />
       <Footer />
     </div>
+  );
+}
+
+function App() {
+  return (
+    <Routes>
+      <Route path="/" element={<LandingPage />} />
+      <Route path="/role-select" element={<RoleSelect />} />
+    </Routes>
   );
 }
 
